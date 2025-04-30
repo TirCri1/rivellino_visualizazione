@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Benvenuti nella ControlRoom del Rivellino">
+		<meta name="keywords" content="ControlRoom, Rivellino">
+		
+		<title>ControlRoom Rivellino</title>
+		<link rel="stylesheet" href="_Rivellino\FrontEnd\Sito\CSS\Formattazione.css">
+	</head>
+	<body>
+		<form action="_Rivellino\FrontEnd\Sito\PageAccesso.php" method="POST">
+			<h1>ControlRoom Rivellino</h1> <br>
+			
+			<label for="user">Nome Utente: </label>
+			<input type="text" name="user" id="user" required><br>
+
+			<label for="pw">Pasword: </label>
+			<input type="pasword" name="pw" id="pw" required><br>
+
+			<button type="submit" name="action" value="login">Accedi</button>
+			<button type="submit" name="action" value="recuperaPw">Recupera Pasword</button>
+			<button type="submit" name="action" value="recuperaUtente">Recupera Nome Utente</button>
+		</form>
+	</body>
+</html>
