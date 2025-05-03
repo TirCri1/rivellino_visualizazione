@@ -12,6 +12,7 @@ INSERT INTO Sensore (NameSensore, Tipo, NomeScatola) VALUES
 ('SensUmid1', 'Umidità', 'Scatola Muro'),
 ('SensUmid2', 'Umidità', 'Scatola Polveriera'),
 ('SensUmid3', 'Umidità', 'Scatola Galleria'),
-('SensQualitàAria', 'Qualità', 'Scatola Muro'),
+('SensQualitàAria1', 'Qualità', 'Scatola Muro'),
+('SensQualitàAria2', 'Qualità', 'Scatola Polveriera'),
 ('SensAllagamento', 'Allagamento', 'Scatola Galleria'),
 ('SensVibrazioni', 'Vibrazioni', 'Scatola Muro');
