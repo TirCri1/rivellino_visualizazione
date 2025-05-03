@@ -2,7 +2,7 @@
 setlocal
 
 :: Elimina il file vecchio, se esiste
-del ip.txt 2>nul
+del ipWindows.txt 2>nul
 
 :: Ottiene l'indirizzo IP locale
 for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr /i "IPv4"') do (
@@ -13,10 +13,10 @@ for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr /i "IPv4"') do (
 set ip=%ip:~1%
 
 :: stampa l'IP locale sul file
-echo IP Locale: %ip% >> ip.txt
+echo IP Locale: %ip% >> ipWindows.txt
 
 echo -----------------------------------------------
-echo   IP locale (%ip%) salvato in ip.txt
+echo   IP locale (%ip%) salvato in ipWindows.txt
 echo -----------------------------------------------
 echo     Premere un tasto per collegarsi all'ip
 echo -----------------------------------------------
