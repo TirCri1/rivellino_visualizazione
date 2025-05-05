@@ -1,21 +1,24 @@
 # config.py
 
+# Connessione porta COM
+PORT = None
 BAUD_RATE = 115200
 
+# Percorso file CSV
 CSV_PATH = "DatiSensori"
 
-# Definizione costante dei file CSV
+# Nome dei file CSV
 CSV_FILES = {
-    'env': f'{CSV_PATH}/temperatura_umidita.csv',
-    'vib': f'{CSV_PATH}/vibrazioni.csv',
-    'flood': f'{CSV_PATH}/allagamento.csv',
-    'air': f'{CSV_PATH}/aria.csv',
-    'battery': f'{CSV_PATH}/batterie.csv'
+    'env': 'temperatura_umidita.csv',
+    'vib': 'vibrazioni.csv',
+    'flood': 'allagamento.csv',
+    'air': 'aria.csv',
+    'battery': 'batterie.csv'
 }
 
-# Mappatura completa degli ID dei sensori con relative informazioni
+# Mappatura degli ID dei sensori con le relative informazioni
+#    ID: (nome, modulo, categoria_file)
 ID_MAP = {
-    # ID: (nome, modulo, categoria_file)
     'a': ('batteria', 'b', 'battery'),
     'b': ('batteria', 'c', 'battery'),
     'c': ('temperatura', 'a', 'env'),
@@ -33,18 +36,26 @@ ID_MAP = {
 
 # Inizializza tutti i file CSV con le intestazioni corrette
 CSV_HEADERS = {
-    'env': ['timestamp', 'modulo', 'temperatura (°C)', 'umidità (%)'],
-    'vib': ['timestamp', 'modulo', 'vibrazione (m/s²)', 'frequenza (Hz)'],
-    'air': ['timestamp', 'modulo', 'CO (ppm)', 'NO2 (ppm)'],
-    'flood': ['timestamp', 'modulo', 'allagamento'],
-    'battery': ['timestamp', 'modulo', 'batteria (%)']
+    'env': ('timestamp', 'modulo', 'temperatura (°C)', 'umidità (%)'),
+    'vib': ('timestamp', 'modulo', 'vibrazione (m/s²)', 'frequenza (Hz)'),
+    'air': ('timestamp', 'modulo', 'CO (ppm)', 'NO2 (ppm)'),
+    'flood': ('timestamp', 'modulo', 'allagamento'),
+    'battery': ('timestamp', 'modulo', 'batteria (%)')
 }
 
+# Messaggi di LOG
+SHOW_LOG = True
+
+LOG_FILE = 'logfile.log'
+
 LOG_MESSAGES = {
-    'init_start': "[INFO] Avvio sistema ricevitore...",
-    'file_created': "[INFO] Creato file {filename} con intestazioni",
-    'port_found': "[INFO] {port} - {baud} baud",
-    'data': "[DATA] {raw_line}",
-    'comm_error': "[ERROR] Errore di comunicazione",
-    'terminated': "[INFO] Programma terminato"
+    'init_start': '[INFO] Avvio ricevitore...',
+    'file_created': '[INFO] File CSV creato',
+    'dir_created': f'[INFO] Cartella {CSV_PATH} creata',
+    'port_found': '[INFO] Connesso alla porta seriale',
+    'dir_error': f'[ERROR] Cartella {CSV_PATH} non trovata',
+    'comm_error': '[ERROR] Errore di comunicazione',
+    'terminated': "[INFO] Programma terminato dall'utente"
 }
+
+

@@ -5,46 +5,71 @@ DB_CONFIG = {
     "database": "rivellino"
 }
 
+TEMPERATURA = {
+    "filePath": "../RiceviDati/DatiSensori/temperatura_umidita.csv",
+    "fileStructure": ["timestamp", "modulo", "temperatura", "umidita"],
+    "tabellaQuery": "temperatura",
+    "dbStructure": ["Data", "Ora", "Valore", "NameSensore"],
+    "sensori": {
+        "a": {"SensTemp1": "temperatura"},
+        "b": {"SensTemp2": "temperatura"},
+        "c": {"SensTemp3": "temperatura"}
+    }
+}
 
-TEMPERATURA =  {
-    "path": "../RiceviDati/DatiSensori/temperatura_umidita.csv",
-    "fileColoumn": ['timestamp', 'modulo', 'temperatura','umidita'],
-    "query": "temperatura",
-    "dbStructure" : ['Data', 'Ora', 'Valore', 'NameSensore'],
-    "a": ["SensTemp1", "Valore", "temperatura"],
-    "b": ["SensTemp2", "Valore", "temperatura"],
-    "c": ["SensTemp3", "Valore", "temperatura"]
+UMIDITA = {
+    "filePath": "../RiceviDati/DatiSensori/temperatura_umidita.csv",
+    "fileStructure": ["timestamp", "modulo", "temperatura", "umidita"],
+    "tabellaQuery": "umidita",
+    "dbStructure": ["Data", "Ora", "Valore", "NameSensore"],
+    "sensori": {
+        "a": {"SensUmid1": "umidita"},
+        "b": {"SensUmid2": "umidita"},
+        "c": {"SensUmid3": "umidita"}
+    }
 }
-UMIDITA =  {
-    "path": "../RiceviDati/DatiSensori/temperatura_umidita.csv",
-    "fileColoumn": ['timestamp', 'modulo', 'temperatura','umidita'],
-    "query": "umidita",
-    "dbStructure" : ['Data', 'Ora', 'Valore', 'NameSensore'],
-    "a": ["SensUmid1", "Valore", "umidita"],
-    "b": ["SensUmid2", "Valore", "umidita"],
-    "c": ["SensUmid3", "Valore", "umidita"]
+
+QUALITA_ARIA = {
+    "filePath": "../RiceviDati/DatiSensori/aria.csv",
+    "fileStructure": ["timestamp", "modulo", "CO", "NO2"],
+    "tabellaQuery": "qualita",
+    "dbStructure": ["Data", "Ora", "ValoreCo", "ValoreNo2", "NameSensore"],
+    "sensori": {
+        "a": {"SensQualitàAria1": {"ValoreCo": "CO"}},
+        "b": {"SensQualitàAria2": {"ValoreNo2": "NO2"}}
+    }
 }
-QUALITA_ARIA =  {
-    "path": "../RiceviDati/DatiSensori/aria.csv",
-    "fileColoumn": ['timestamp', 'modulo', 'CO', 'NO2'],
-    "query": "qualita",
-    "dbStructure" : ['Data', 'Ora', 'ValoreCo', 'ValoreNo2', 'NameSensore'],
-    "a": ["SensQualitàAria1", "ValoreCo", "CO"],
-    "b": ["SensQualitàAria2", "ValoreNo2", "NO2"]
+
+VIBRAZIONE = {
+    "filePath": "../RiceviDati/DatiSensori/vibrazioni.csv",
+    "fileStructure": ["timestamp", "modulo", "vibrazione", "frequenza"],
+    "tabellaQuery": "vibrazione",
+    "dbStructure": ["Data", "Ora", "ValoreFrequenza", "ValoreAmpiezza", "NameSensore"],
+    "sensori": {
+        "a": {"SensVibrazione": {"frequenza": "ValoreFrequenza", "vibrazione": "ValoreAmpiezza"}}
+    }
 }
-VIBRAZIONE =  {
-    "path": "../RiceviDati/DatiSensori/vibrazioni.csv",
-    "fileColoumn": ['timestamp', 'modulo', 'vibrazione','frequenza'],
-    "query": "vibrazione",
-    "dbStructure" : ['Data', 'Ora', 'ValoreFrequenza', 'ValoreAmpiezza', 'NameSensore'],
-    "a": ["SensVibrazione", "ValoreFrequenza", "ValoreAmpiezza", "vibrazione", "frequenza"]
+
+ALLAGAMENTO = {
+    "filePath": "../RiceviDati/DatiSensori/allagamento.csv",
+    "fileStructure": ["timestamp", "modulo", "allagamento"],
+    "tabellaQuery": "allagamento",
+    "dbStructure": ["Data", "Ora", "Valore", "NameSensore"],
+    "sensori": {
+        "b": {"SensAllagamento": "allagamento"}
+    }
 }
-ALLAGAMENTO =  {
-    "path": "../RiceviDati/DatiSensori/allagamento.csv",
-    "fileColoumn": ['timestamp', 'modulo', 'allagamento'],
-    "query": "allagamento",
-    "dbStructure" : ['Data', 'Ora', 'Valore', 'NameSensore'],
-    "b": ["SensAllagamento", "Valore", "allagamento"]
+
+ALIMENTAZIONE = {
+    "filePath": "../RiceviDati/DatiSensori/batterie.csv",
+    "fileStructure": ["timestamp", "modulo", "batteria"],
+    "tabellaQuery": "scatola",
+    "dbStructure": ["NomeScatola", "PercentualeBatteria"],
+    "sensori": {
+        "a": {"Scatola Muro": "batteria"},
+        "b": {"Scatola Galleria": "batteria"},
+        "c": {"Scatola Polveriera": "batteria"}
+    }
 }
 
 STRUCTURE = {
@@ -53,4 +78,5 @@ STRUCTURE = {
     "aria": QUALITA_ARIA,
     "vibrazione": VIBRAZIONE,
     "allagamento": ALLAGAMENTO,
+    "alimentazione": ALIMENTAZIONE
 }
