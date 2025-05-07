@@ -11,7 +11,7 @@
 		
 		if ($conn->connect_error) {
 			die("Connessione fallita: " . $conn->connect_error);
-			header("Refresh: 5; url=https://10.10.60.186");
+			header("Refresh: 3; url=https://10.10.60.186");
 			exit();
 		}
 
@@ -23,7 +23,7 @@
 
 		if ($ris->num_rows == 0) {
 			echo "Utente inesistente!";
-			header("Refresh: 5; url=https://10.10.60.186");
+			header("Refresh: 3; url=https://10.10.60.186");
 			exit();
 		} else {
 			$pwUtente = $ris->fetch_assoc();
@@ -33,7 +33,7 @@
 				exit();
 			} else {
 				echo "Password errata!";
-				header("Refresh: 5; url=https://10.10.60.186");
+				header("Refresh: 3; url=https://10.10.60.186");
 				exit();
 			}
 		}
@@ -43,7 +43,7 @@
 		
 	} else {
 		echo "Azione sconosciuta!";
-		header("Refresh: 5; url=https://10.10.60.186");
+		header("Refresh: 3; url=https://10.10.60.186");
 		exit();
 	}
 	

@@ -10,6 +10,7 @@
 		VisQualitaAria();
 		VisVibrazioni();
 		VisAllagamento();
+		VisInfoCase();
 	}
 	$conn->close();
 	
@@ -38,7 +39,7 @@
 				}
 			echo "</li>";
 			
-			echo "<li> Sensore temperatura polveriera --- ";
+			echo "<li> Sensore temperatura galleria --- ";
 				$sql = "SELECT Valore
 						FROM temperatura
 						WHERE NameSensore = 'SensTemp2'
@@ -54,7 +55,7 @@
 				}
 			echo "</li>";
 			
-			echo "<li> Sensore temperatura galleria --- ";
+			echo "<li> Sensore temperatura polveriera --- ";
 				$sql = "SELECT Valore
 						FROM temperatura
 						WHERE NameSensore = 'SensTemp3'
@@ -97,7 +98,7 @@
 				}
 			echo "</li>";
 			
-			echo "<li> Sensore umidità polveriera --- ";
+			echo "<li> Sensore umidità galleria --- ";
 				$sql = "SELECT Valore
 						FROM umidita
 						WHERE NameSensore = 'SensUmid2'
@@ -113,7 +114,7 @@
 				}
 			echo "</li>";
 			
-			echo "<li> Sensore umidità galleria --- ";
+			echo "<li> Sensore umidità  polveriera --- ";
 				$sql = "SELECT Valore
 						FROM umidita
 						WHERE NameSensore = 'SensUmid3'
@@ -152,7 +153,7 @@
 				if($righe==0){
 					echo "Nessun dato presente";
 				} else {
-					echo $temp['ValoreCo']."%";
+					echo $temp['ValoreCo']."ppm";
 				}
 			echo "</li>";
 			
@@ -168,7 +169,7 @@
 				if($righe==0){
 					echo "Nessun dato presente";
 				} else {
-					echo $temp['ValoreNo2']."%";
+					echo $temp['ValoreNo2']."ppm";
 				}
 			echo "</li>";
 		
@@ -234,4 +235,48 @@
 		$conn->close();
 	}
 	
+	function VisInfoCase(){
+		$conn = new mysqli("localhost","root","","rivellino");
+		
+		echo "<hr>";
+		echo "<p> Dati case attuale: </p>";
+		echo "<ul>";
+			
+			echo "<li> Case galleria --- ";
+				$sql = "
+						SELECT 	PercentualeBatteria
+						FROM scatola
+						WHERE NomeScatola = 'Scatola Galleria'
+						";
+				$ris = $conn -> query($sql);
+				$righe = $ris -> num_rows;
+				$temp = $ris->fetch_assoc();
+				if($righe==0){
+					echo "Nessun dato presente";
+				} else {
+					echo " stato batteria: ".$temp['PercentualeBatteria']."%";
+				}
+			echo "</li>";
+			
+			echo "<li> Case muro --- alimentato attraverso la rete elettrica </li>";
+			
+			echo "<li> Case polveriera --- ";
+				$sql = "
+						SELECT 	PercentualeBatteria
+						FROM scatola
+						WHERE NomeScatola = 'Scatola Polveriera'
+						";
+				$ris = $conn -> query($sql);
+				$righe = $ris -> num_rows;
+				$temp = $ris->fetch_assoc();
+				if($righe==0){
+					echo "Nessun dato presente";
+				} else {
+					echo " stato batteria: ".$temp['PercentualeBatteria']."%";
+				}
+			echo "</li>";
+		
+		echo "</ul>";
+		$conn->close();
+	}
 ?>

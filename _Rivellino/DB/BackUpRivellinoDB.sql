@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 18, 2025 alle 01:12
+-- Creato il: Mag 03, 2025 alle 19:41
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -30,17 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `allagamento` (
   `Data` date NOT NULL,
   `Ora` time NOT NULL,
-  `Valore` BOOLEAN NOT NULL,
+  `Valore` tinyint(1) DEFAULT 1,
   `NameSensore` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dump dei dati per la tabella `allagamento`
---
-
-INSERT INTO `allagamento` (`Data`, `Ora`, `Valore`, `NameSensore`) VALUES
-('2025-04-15', '16:00:00', 0, 'SensAllagamento'),
-('2025-04-15', '18:00:00', 1, 'SensAllagamento');
 
 -- --------------------------------------------------------
 
@@ -51,18 +43,10 @@ INSERT INTO `allagamento` (`Data`, `Ora`, `Valore`, `NameSensore`) VALUES
 CREATE TABLE `qualita` (
   `Data` date NOT NULL,
   `Ora` time NOT NULL,
-  `ValoreCo2` double NOT NULL,
-  `ValoreNo2` double NOT NULL,
+  `ValoreCo` double DEFAULT -1,
+  `ValoreNo2` double DEFAULT -1,
   `NameSensore` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dump dei dati per la tabella `qualita`
---
-
-INSERT INTO `qualita` (`Data`, `Ora`, `ValoreCo2`, `ValoreNo2`, `NameSensore`) VALUES
-('2025-04-15', '06:00:00', 400.5, 40.2, 'SensQualitàAria'),
-('2025-04-15', '09:00:00', 410.3, 39.8, 'SensQualitàAria');
 
 -- --------------------------------------------------------
 
@@ -102,14 +86,15 @@ CREATE TABLE `sensore` (
 
 INSERT INTO `sensore` (`NameSensore`, `Tipo`, `NomeScatola`) VALUES
 ('SensAllagamento', 'Allagamento', 'Scatola Galleria'),
-('SensQualitàAria', 'Qualità', 'Scatola Muro'),
+('SensQualitàAria1', 'Qualità', 'Scatola Muro'),
+('SensQualitàAria2', 'Qualità', 'Scatola Polveriera'),
 ('SensTemp1', 'Temperatura', 'Scatola Muro'),
 ('SensTemp2', 'Temperatura', 'Scatola Polveriera'),
 ('SensTemp3', 'Temperatura', 'Scatola Galleria'),
 ('SensUmid1', 'Umidità', 'Scatola Muro'),
 ('SensUmid2', 'Umidità', 'Scatola Polveriera'),
 ('SensUmid3', 'Umidità', 'Scatola Galleria'),
-('SensVibrazioni', 'Vibrazioni', 'Scatola Muro');
+('SensVibrazione', 'Vibrazioni', 'Scatola Muro');
 
 -- --------------------------------------------------------
 
@@ -124,15 +109,6 @@ CREATE TABLE `temperatura` (
   `NameSensore` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dump dei dati per la tabella `temperatura`
---
-
-INSERT INTO `temperatura` (`Data`, `Ora`, `Valore`, `NameSensore`) VALUES
-('2025-04-15', '08:30:00', 21.5, 'SensTemp1'),
-('2025-04-15', '09:30:00', 21, 'SensTemp2'),
-('2025-04-15', '12:00:00', 24, 'SensTemp1');
-
 -- --------------------------------------------------------
 
 --
@@ -145,15 +121,6 @@ CREATE TABLE `umidita` (
   `Valore` int(11) NOT NULL,
   `NameSensore` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dump dei dati per la tabella `umidita`
---
-
-INSERT INTO `umidita` (`Data`, `Ora`, `Valore`, `NameSensore`) VALUES
-('2025-04-15', '08:00:00', 60, 'SensUmid1'),
-('2025-04-15', '10:00:00', 70, 'SensUmid3'),
-('2025-04-15', '14:00:00', 55, 'SensUmid1');
 
 -- --------------------------------------------------------
 
@@ -171,29 +138,21 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`userUtente`, `passwordUtente`) VALUES
-('admin', '$2y$10$N5o4NXPQvuxN0');
+('admin', '$2y$10$gNqOAnU.JI/EP8EK4UFL0.vBwEBQsdRbaerf7jk4HRHTLzR68/mc.');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `vibrazioni`
+-- Struttura della tabella `vibrazione`
 --
 
-CREATE TABLE `vibrazioni` (
+CREATE TABLE `vibrazione` (
   `Data` date NOT NULL,
   `Ora` time NOT NULL,
   `ValoreFrequenza` int(11) NOT NULL,
   `ValoreAmpiezza` int(11) NOT NULL,
   `NameSensore` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dump dei dati per la tabella `vibrazioni`
---
-
-INSERT INTO `vibrazioni` (`Data`, `Ora`, `ValoreFrequenza`, `ValoreAmpiezza`, `NameSensore`) VALUES
-('2025-04-15', '08:30:00', 15, 10, 'SensVibrazioni'),
-('2025-04-15', '12:00:00', 20, 12, 'SensVibrazioni');
 
 --
 -- Indici per le tabelle scaricate
@@ -250,9 +209,9 @@ ALTER TABLE `utente`
   ADD UNIQUE KEY `userUtente` (`userUtente`);
 
 --
--- Indici per le tabelle `vibrazioni`
+-- Indici per le tabelle `vibrazione`
 --
-ALTER TABLE `vibrazioni`
+ALTER TABLE `vibrazione`
   ADD PRIMARY KEY (`Data`,`Ora`,`NameSensore`),
   ADD KEY `NameSensore` (`NameSensore`);
 
@@ -291,10 +250,10 @@ ALTER TABLE `umidita`
   ADD CONSTRAINT `umidita_ibfk_1` FOREIGN KEY (`NameSensore`) REFERENCES `sensore` (`NameSensore`);
 
 --
--- Limiti per la tabella `vibrazioni`
+-- Limiti per la tabella `vibrazione`
 --
-ALTER TABLE `vibrazioni`
-  ADD CONSTRAINT `vibrazioni_ibfk_1` FOREIGN KEY (`NameSensore`) REFERENCES `sensore` (`NameSensore`);
+ALTER TABLE `vibrazione`
+  ADD CONSTRAINT `vibrazione_ibfk_1` FOREIGN KEY (`NameSensore`) REFERENCES `sensore` (`NameSensore`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

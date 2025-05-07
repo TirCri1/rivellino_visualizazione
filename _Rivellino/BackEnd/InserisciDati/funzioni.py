@@ -77,7 +77,7 @@ def insert(sensor_type):
                 # Inserisce i dati specifici per ogni tipo di sensore
                 if sensor_type == "vibrazione":
                     freq = row.get("frequenza")
-                    amp = row.get("vibrazione")
+                    amp = float(row.get("vibrazione"))
                     cursor.execute(query, (timestamp.date(), timestamp.time(), freq, amp, sensor_name))
 
                 elif sensor_type == "aria":
