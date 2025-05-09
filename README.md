@@ -21,8 +21,8 @@ Moduli:
 | Vibrazioni                 | m/s²         | a       |
 | Allagamento                | 0 / 1        | b       |
 
-
-TOKEN = "7903372067:AAEhRKtv0YzKnc5o2BRaElduv5lNxw3HuzY"
-USERNAME_CORRETTO = "Rivellino"
-PASSWORD_CORRETTA = "Allert"
-LINK_CANALI_PRIVATO = "https://t.me/+u0I2o9VZ9JA4MzM0"
+Telegram:
+- TOKEN = "7903372067:AAEhRKtv0YzKnc5o2BRaElduv5lNxw3HuzY"
+- USERNAME_CORRETTO = "Rivellino"
+- PASSWORD_CORRETTA = "Allert"
+- LINK_CANALI_PRIVATO = "https://t.me/+u0I2o9VZ9JA4MzM0"
