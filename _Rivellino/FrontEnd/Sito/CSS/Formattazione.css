@@ -1,0 +1,19 @@
+	h1 {
+		font-family: Arial;
+		font-size: auto;
+		font-weight: bold;
+		text-align: center;
+		color: black;
+	}
+		
+	p {
+		font-family: Arial;
+		font-size: auto;
+		text-align: center;
+		color: black;
+	}
+	table {
+		text-align: center;
+		border: 1px;
+		bolder-collapse:collapse;
+	}
