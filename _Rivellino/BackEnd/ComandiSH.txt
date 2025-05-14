@@ -1,2 +1,0 @@
-chmod +x Run_LXTerminal.sh
-./Run_LXTerminal.sh
