@@ -18,7 +18,7 @@
 	LIMIT 1;
 	
 --Query ricerca Co2 e No2 attuale
-	SELECT ValoreCo2, ValoreNo2
+	SELECT ValoreCo, ValoreNo2
 	FROM Qualita
 	ORDER BY Data DESC, Ora DESC
 	LIMIT 1;

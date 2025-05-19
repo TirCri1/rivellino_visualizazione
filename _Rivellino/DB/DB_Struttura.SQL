@@ -39,7 +39,7 @@ CREATE TABLE `Umidita` (
 CREATE TABLE `Qualita` (
     `Data` DATE NOT NULL,
     `Ora` TIME NOT NULL,
-    `ValoreCo2` DOUBLE NOT NULL,
+    `ValoreCo` DOUBLE NOT NULL,
 	`ValoreNo2` DOUBLE NOT NULL,
     `NameSensore` VARCHAR(20) NOT NULL,
     PRIMARY KEY (`Data`, `Ora`, `NameSensore`),

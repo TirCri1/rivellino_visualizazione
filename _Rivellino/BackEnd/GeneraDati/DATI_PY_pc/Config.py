@@ -1,0 +1,6 @@
+file_allagamento = "BackEnd/DatiSensori/allagamento.csv"
+file_ariaCo = "BackEnd/DatiSensori/ariaCo.csv"
+file_ariaNo2 = "BackEnd/DatiSensori/ariaNo2.csv"
+file_vibrazioni = "BackEnd/DatiSensori/vibrazioni.csv"
+file_temp_umid = "BackEnd/DatiSensori/temperatura_umidita.csv"
+file_batterie = "BackEnd/DatiSensori/batterie.csv"

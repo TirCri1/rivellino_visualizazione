@@ -1,4 +1,10 @@
+
+#Configurazioni
+
+
+#Configurazioni del DB
 DB_CONFIG = {
+    #"host": "10.10.60.186",
     "host": "localhost",
     "user": "remoteUser",
     "password": "!rivellino!RIVELLINO!",
@@ -6,7 +12,7 @@ DB_CONFIG = {
 }
 
 TEMPERATURA = {
-    "filePath": "BackEnd/RiceviDati/DatiSensori/temperatura_umidita.csv",
+    "filePath": "BackEnd/DatiSensori/temperatura_umidita.csv",
     "fileStructure": ["timestamp", "modulo", "temperatura", "umidita"],
     "tabellaQuery": "temperatura",
     "dbStructure": ["Data", "Ora", "Valore", "NameSensore"],
@@ -18,7 +24,7 @@ TEMPERATURA = {
 }
 
 UMIDITA = {
-    "filePath": "BackEnd/RiceviDati/DatiSensori/temperatura_umidita.csv",
+    "filePath": "BackEnd/DatiSensori/temperatura_umidita.csv",
     "fileStructure": ["timestamp", "modulo", "temperatura", "umidita"],
     "tabellaQuery": "umidita",
     "dbStructure": ["Data", "Ora", "Valore", "NameSensore"],
@@ -29,19 +35,28 @@ UMIDITA = {
     }
 }
 
-QUALITA_ARIA = {
-    "filePath": "BackEnd/RiceviDati/DatiSensori/aria.csv",
-    "fileStructure": ["timestamp", "modulo", "CO", "NO2"],
+QUALITA_ARIA_CO = {
+    "filePath": "BackEnd/DatiSensori/ariaCO.csv",
+    "fileStructure": ["timestamp", "modulo", "CO"],
     "tabellaQuery": "qualita",
     "dbStructure": ["Data", "Ora", "ValoreCo", "ValoreNo2", "NameSensore"],
     "sensori": {
-        "a": {"SensQualitàAria1": {"ValoreCo": "CO"}},
+        "a": {"SensQualitàAria1": {"ValoreCo": "CO"}}
+    }
+}
+
+QUALITA_ARIA_NO2 = {
+    "filePath": "BackEnd/DatiSensori/ariaNO2.csv",
+    "fileStructure": ["timestamp", "modulo", "NO2"],
+    "tabellaQuery": "qualita",
+    "dbStructure": ["Data", "Ora", "ValoreCo", "ValoreNo2", "NameSensore"],
+    "sensori": {
         "b": {"SensQualitàAria2": {"ValoreNo2": "NO2"}}
     }
 }
 
 VIBRAZIONE = {
-    "filePath": "BackEnd/RiceviDati/DatiSensori/vibrazioni.csv",
+    "filePath": "BackEnd/DatiSensori/vibrazioni.csv",
     "fileStructure": ["timestamp", "modulo", "vibrazione", "frequenza"],
     "tabellaQuery": "vibrazione",
     "dbStructure": ["Data", "Ora", "ValoreFrequenza", "ValoreAmpiezza", "NameSensore"],
@@ -51,7 +66,7 @@ VIBRAZIONE = {
 }
 
 ALLAGAMENTO = {
-    "filePath": "BackEnd/RiceviDati/DatiSensori/allagamento.csv",
+    "filePath": "BackEnd/DatiSensori/allagamento.csv",
     "fileStructure": ["timestamp", "modulo", "allagamento"],
     "tabellaQuery": "allagamento",
     "dbStructure": ["Data", "Ora", "Valore", "NameSensore"],
@@ -61,7 +76,7 @@ ALLAGAMENTO = {
 }
 
 ALIMENTAZIONE = {
-    "filePath": "BackEnd/RiceviDati/DatiSensori/batterie.csv",
+    "filePath": "BackEnd/DatiSensori/batterie.csv",
     "fileStructure": ["timestamp", "modulo", "batteria"],
     "tabellaQuery": "scatola",
     "dbStructure": ["NomeScatola", "PercentualeBatteria"],
@@ -75,7 +90,8 @@ ALIMENTAZIONE = {
 STRUCTURE = {
     "temp": TEMPERATURA,
     "umid": UMIDITA,
-    "aria": QUALITA_ARIA,
+    "ariaCO": QUALITA_ARIA_CO,
+    "ariaNO2": QUALITA_ARIA_NO2,
     "vibrazione": VIBRAZIONE,
     "allagamento": ALLAGAMENTO,
     "alimentazione": ALIMENTAZIONE

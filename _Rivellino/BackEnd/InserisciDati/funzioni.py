@@ -80,14 +80,13 @@ def insert(sensor_type):
                     amp = float(row.get("vibrazione"))
                     cursor.execute(query, (timestamp.date(), timestamp.time(), freq, amp, sensor_name))
 
-                elif sensor_type == "aria":
-                    co = row.get("CO", -1)
-                    no2 = row.get("NO2", -1)
-                    if "ValoreCo" in value_info:
-                        cursor.execute(query, (timestamp.date(), timestamp.time(), co, -1, sensor_name))
-                    elif "ValoreNo2" in value_info:
-                        cursor.execute(query, (timestamp.date(), timestamp.time(), -1, no2, sensor_name))
-
+                elif sensor_type == "ariaCO":
+                    co = row.get("CO")
+                    cursor.execute(query, (timestamp.date(), timestamp.time(), co, -1, sensor_name))
+                elif sensor_type == "ariaNO2":
+                    no2 = row.get("NO2")
+                    cursor.execute(query, (timestamp.date(), timestamp.time(), -1, no2, sensor_name))
+                
                 else:
                     value = row.get(value_info)
                     cursor.execute(query, (timestamp.date(), timestamp.time(), value, sensor_name))
@@ -101,7 +100,7 @@ def insert(sensor_type):
         cursor.close()  # Chiude il cursore
         conn.close()  # Chiude la connessione al database
 
-# Funzione per aggiornare lo stato della batteria dei caricabatterie
+# Funzione per aggiornare lo stato della batteria
 def update_battery_charger(sensor_type):
     structure = STRUCTURE[sensor_type]  # Ottiene la struttura per il sensore
     df = read_file(structure)  # Legge i dati

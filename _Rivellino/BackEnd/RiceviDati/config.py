@@ -5,7 +5,7 @@ PORT = None
 BAUD_RATE = 115200
 
 # Percorso file CSV
-CSV_PATH = "DatiSensori"
+CSV_PATH = "BackEnd/DatiSensori"
 
 # Nome dei file CSV
 CSV_FILES = {

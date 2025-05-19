@@ -26,7 +26,8 @@ if __name__ == "__main__":  # Il codice all'interno di questo blocco viene esegu
     intervals = {  # Dizionario con i tipi di sensori e il relativo intervallo di tempo
         "temp": 10,
         "umid": 10,
-        "aria": 10,
+        "ariaCO": 10,
+        "ariaNO2": 10,
         "vibrazione": 1,
         "allagamento": 5,
         "alimentazione": 15

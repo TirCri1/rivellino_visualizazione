@@ -35,8 +35,6 @@ async def elimina_messaggi_canale(update, chat_id):
     except (FileNotFoundError, json.JSONDecodeError):
         print("[⚠️] File messaggi non trovato o vuoto.")
         return
-
-    await invia_e_memorizza(update, chat_id, "Messaggi delle ultime 48 ore eliminati con successo")
     
     for msg_id in message_ids:
         response = requests.post(
@@ -51,6 +49,7 @@ async def elimina_messaggi_canale(update, chat_id):
 
     open(MESSAGES_FILE, 'w').write('[]')
     print("[✅] Tutti i messaggi gestiti ed eliminati.")
+    await invia_e_memorizza(update, chat_id, "Messaggi delle ultime 48 ore eliminati con successo")
 
 # ====== /start ======
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -91,7 +90,7 @@ async def gestisci_messaggi(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await invia_e_memorizza(update, chat_id, f"✅ Accesso consentito! Ecco il link: {LINK_CANALI_PRIVATO}")
             print(f"[✅ LOGIN UTENTE] @{user.username or 'N/A'} - {user.full_name or 'N/A'}")
             asyncio.create_task(pulisci_chat_dopo_delay(context, chat_id, time = CLEANUP_DELAY_SECONDS_CHAT))
-
+            
         elif username == USERNAME_ADMIN and password == PASSWORD_ADMIN:
             keyboard = [["🧹 Elimina messaggi canale"], ["❌ Esci"]]
             await invia_e_memorizza(update, chat_id, "✅ Accesso ADMIN. Scegli un'operazione:",
@@ -101,8 +100,8 @@ async def gestisci_messaggi(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
 
         else:
-            await invia_e_memorizza(update, chat_id, "❌ Username o password errati. Riprova con /start")
-
+            await invia_e_memorizza(update, chat_id, "❌ Username o password errati.")
+            asyncio.create_task(pulisci_chat_dopo_delay(context, chat_id, time = CLEANUP_DELAY_SECONDS_ERROR))
         stato_utenti.pop(chat_id, None)
         dati_utente.pop(chat_id, None)
 
