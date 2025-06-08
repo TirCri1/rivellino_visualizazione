@@ -1,27 +1,71 @@
 <!DOCTYPE html>
 <html lang="it">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="Benvenuti nella ControlRoom del Rivellino">
-		<meta name="keywords" content="ControlRoom, Rivellino">
-		
-		<title>ControlRoom Rivellino</title>
-		<link rel="stylesheet" href="_Rivellino\FrontEnd\Sito\CSS\Formattazione.css">
-	</head>
-	<body>
-		<form action="_Rivellino\FrontEnd\Sito\PageAccesso.php" method="POST">
-			<h1>ControlRoom Rivellino</h1> <br>
-			
-			<label for="user">Nome Utente: </label>
-			<input type="text" name="user" id="user" required><br>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Benvenuti nella ControlRoom del Rivellino">
+  <meta name="keywords" content="ControlRoom, Rivellino">
+  <title>ControlRoom Rivellino</title>
+  <link rel="stylesheet" href="_Rivellino/FrontEnd/Sito/CSS/Formattazione.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f5f5f5;
+    }
 
-			<label for="pw">Pasword: </label>
-			<input type="pasword" name="pw" id="pw" required><br>
+    form {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
 
-			<button type="submit" name="action" value="login">Accedi</button>
-			<button type="submit" name="action" value="recuperaPw">Recupera Pasword</button>
-			<button type="submit" name="action" value="recuperaUtente">Recupera Nome Utente</button>
-		</form>
-	</body>
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+    }
+
+    button {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #007BFF;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <form action="_Rivellino/FrontEnd/_Action.php" method="POST">
+    <h1>ControlRoom Rivellino</h1>
+
+    <label for="user">Nome Utente:</label>
+    <input type="text" name="user" id="user" autocomplete="username" required>
+
+    <label for="pw">Password:</label>
+    <input type="password" name="pw" id="pw" autocomplete="current-password" required>
+
+    <button type="submit" name="action" value="login">Accedi</button>
+    <button type="submit" name="action" value="cambiaCredenziali" formnovalidate>Cambia credenziali</button>
+  </form>
+</body>
 </html>
