@@ -1,5 +1,0 @@
-Dare i permessi di esecuzione: 
-	chmod +x nome_script.sh
-
-Eseguibile lo script:
-	./nome_script.sh
